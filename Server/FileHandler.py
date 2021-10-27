@@ -20,11 +20,17 @@ def GEThandler(request):
     dirname = os.path.dirname(__file__)
     checkFile = os.path.join(dirname, f'../{getFile}')
 
+    ApprovedDir = ['Static']
+    reqDir = getFile.split('/')
+    # print(reqDir)
 
     # print (os.path.exists(checkFile))
     # print(checkFile)
 
     try:
+        if(reqDir[0] not in ApprovedDir):
+            raise Exception("Error: Access denied")
+
         file = open(checkFile, 'rb')
         # print(os.path.exists(checkFile))
         resoponse = file.read()

@@ -80,6 +80,9 @@ class HttpServer:
 
             else:
 
+                # this check catched unregestered request such as favicon or css or files directly requested.
+                # security needs to be implmented on this method so that only files in the static directory can 
+                # accessed.
                 if request != None and request[1] not in self._registeredRoutes:
                     finalRes = GEThandler(request)
                     self._client_connection.send(finalRes)    
