@@ -20,10 +20,17 @@ def GEThandler(request):
     dirname = os.path.dirname(__file__)
     checkFile = os.path.join(dirname, f'../{getFile}')
 
-    ApprovedDir = ['Static']
-    reqDir = getFile.split('/')
-    # print(reqDir)
 
+    # Make sure that you put folder names in here that you want to be accessable
+    # the outside world.
+    ApprovedDir = ['Static']
+
+    # this gets the requested directory so that it can be checked if it is allowed
+    # or not.
+    reqDir = getFile.split('/')
+
+    # for debugging purposes:
+    # print(reqDir)
     # print (os.path.exists(checkFile))
     # print(checkFile)
 
@@ -52,7 +59,7 @@ def GEThandler(request):
         return final_response
 
     except Exception as e:
-        print( f"     {colored(curDate, 'white', 'on_red')}, '{request[0]} {request[1]}' No File exists.")
+        print( f"     {colored(curDate, 'white', 'on_red')}, '{request[0]} {request[1]}' {e.args}.")
         header = 'HTTP/1.1 404 Not Found\n\n'
         response ='<html><body><center><h3>Error 404: File not found</h3><p>Python HTTP Server</p></center></body>z</html>'.encode('utf-8')
         final_response = header.encode()
