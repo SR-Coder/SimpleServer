@@ -9,15 +9,15 @@ server = HttpServer("127.0.0.1", 8000, False)
 # return methods for showing different things!!
 
 @server.route("/")
-def sayHi():
+def Index():
     return View("Index")
 
 @server.route("/home")
-def sayHello():
+def Home():
     return View("Home")
 
 @server.route("/new")
-def newPage():
+def Invalid():
     return View("DoesNotExist")
 
 
